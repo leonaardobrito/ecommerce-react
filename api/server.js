@@ -22,19 +22,20 @@ app.use("/public/images", express.static(__dirname + "/public/images"));
 const dbs = require("./config/database");
 const dbURI = isProduction ? dbs.dbProduction : dbs.dbTest;
 
-mongoose.connect(dbURI, { useNewUrlParser: true });
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// SETUP EJS
+// SETUP EJS - pacote de visualização
 app.set("view engine", "ejs");
 
-// CONFIGURACOES
+// CONFIGURACOES de segurança
 if (!isProduction) {
     app.use(morgan("dev"));
 }
 app.use(cors());
-app.disable("x-powered-by");
-app.use(compression());
+app.disable("x-powered-by"); // campo do reader do express. desabilitado por segurança. tanto faz em dev
+app.use(compression()); // deixa requisições mais leves
 
+// limite de 1.5MB de cache
 app.use(bodyParser.urlencoded({ extended: false, limit: 1.5 * 1024 * 1024 }));
 app.use(bodyParser.json({ limit: 1.5 * 1024 * 1024 }));
 
@@ -51,16 +52,16 @@ app.use((req, res, next) => {
     next(err)
 });
 
-// 422, 500, 401 - ROTAs
+// 422, 500, 401 - gerencia todas essas ROTAs
 app.use((err, req, res, next) => {
-    res.status(err.status || 500);
+    res.status(err.status || 500); // 500 é erro do servidor
     if (err.status !== 404) {
         console.warn("Error: ", err.message, new Date());
     }
     res.json({ errors: { message: err.message, status: err.status } });
 });
 
-// ESCUTAR
+// ESCUTAR aplicação
 app.listen(PORT, (err) => {
     if (err) throw err;
     console.log(`Rodando na //localhost:${PORT}`);
