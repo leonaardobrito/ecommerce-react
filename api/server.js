@@ -47,7 +47,7 @@ app.use("/", require("./routes"));
 
 // 404 - ROTA
 app.use((req, res, next) => {
-    const err = new Error("Not Found");
+    const err = new Error("Not Found!!");
     err.status = 404;
     next(err)
 });
@@ -58,7 +58,8 @@ app.use((err, req, res, next) => {
     if (err.status !== 404) {
         console.warn("Error: ", err.message, new Date());
     }
-    res.json({ errors: { message: err.message, status: err.status } });
+    // res.json({ errors: { message: err.message, status: err.status } });
+    res.json(err);
 });
 
 // ESCUTAR aplicação
