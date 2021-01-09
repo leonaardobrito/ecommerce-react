@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <% include ../partials/header %>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    </head>
-    <body>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
-                    <h2>Recuperar Senha</h2>
-                    <hr /><br />
-                </div>
+
+<head>
+    <% include('../partials/header') %>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+                <h2>Recuperar Senha</h2>
+                <hr /><br />
                 <% if(success) { %>
                     <div class="alert alert-success">
                         <%= success %>
@@ -22,7 +23,7 @@
                         <%= error %>
                     </div>
                 <% } %>
-            
+
                 <p>
                     Digite seu email para receber as instruções de como reiniciar sua senha
                 </p>
@@ -33,7 +34,12 @@
                     </div>
                     <button class="btn btn-primary">Recuperar senha</button>
                 </form>
+
             </div>
+
         </div>
-    </body>
+
+    </div>
+</body>
+
 </html>
