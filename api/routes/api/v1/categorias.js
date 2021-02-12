@@ -6,7 +6,6 @@ const auth = require("../../auth");
 const Validation = require("express-validation");
 const { LojaValidation } = require("../../../controllers/validacoes/lojaValidation");
 const { CategoriaValidation } = require("../../../controllers/validacoes/categoriaValidation");
-// const { model } = require("mongoose");
 
 const categoriaController = new CategoriaController();
 
