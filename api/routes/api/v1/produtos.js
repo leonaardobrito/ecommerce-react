@@ -17,8 +17,8 @@ router.delete("/:id", auth.required, LojaValidation.admin, produtoController.rem
 // CLIENTE
 router.get("/", produtoController.index);
 router.get("/disponiveis", produtoController.indexDisponiveis);
-router.get("/search/:search", produtoController.search);
-router.get("/:id", produtoController.show);
+// router.get("/search/:search", produtoController.search);
+// router.get("/:id", produtoController.show);
 
 // VARIACOES
 
