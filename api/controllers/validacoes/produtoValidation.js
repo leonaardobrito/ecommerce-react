@@ -5,36 +5,37 @@ const Joi = BaseJoi.extend(Extension);
 const ProdutoValidation = {
     store: {
         body: {
-            titulo: Joi.string().required(),
-            descricao: Joi.string().required(),
-            categoria: Joi.string().alphanum().length(24).required(),
-            descricao: Joi.number().required(),
-            promocao: Joi.number(),
+            titulo: Joi.string().required(), 
+            descricao: Joi.string().required(), 
+            categoria: Joi.string().alphanum().length(24).required(), 
+            preco: Joi.number().required(), 
+            promocao: Joi.number(), 
             sku: Joi.string().required()
         }
     },
     update: {
         params: {
-            id: Joi.string().alphanum().length(24).required(),
+            id: Joi.string().alphanum().length(24).required()
         },
         body: {
-            titulo: Joi.string().optional(),
-            descricao: Joi.string().optional(),
-            categoria: Joi.string().alphanum().length(24).optional(),
-            descricao: Joi.number().optional(),
-            promocao: Joi.number(),
+            titulo: Joi.string().optional(), 
+            descricao: Joi.string().optional(), 
+            categoria: Joi.string().alphanum().length(24).optional(), 
+            fotos: Joi.array().items(Joi.string()).optional(),
+            preco: Joi.number().optional(), 
+            promocao: Joi.number(), 
             sku: Joi.string().optional(),
             disponibilidade: Joi.boolean().optional()
         }
     },
     updateImages: {
         params: {
-            id: Joi.string().alphanum().length(24).required(),
+            id: Joi.string().alphanum().length(24).required()
         }
     },
     remove: {
         params: {
-            id: Joi.string().alphanum().length(24).required(),
+            id: Joi.string().alphanum().length(24).required()
         }
     },
     index: {
@@ -42,7 +43,7 @@ const ProdutoValidation = {
             loja: Joi.string().alphanum().length(24).required(),
             limit: Joi.number(),
             offset: Joi.number(),
-            sortType: Joi.string(),
+            sortType: Joi.string()
         }
     },
     indexDisponiveis: {
@@ -50,23 +51,33 @@ const ProdutoValidation = {
             loja: Joi.string().alphanum().length(24).required(),
             limit: Joi.number(),
             offset: Joi.number(),
-            sortType: Joi.string(),
+            sortType: Joi.string()
         }
     },
     search: {
-        params: {
-            search: Joi.string().required(),
-        },
         query: {
             loja: Joi.string().alphanum().length(24).required(),
             limit: Joi.number(),
             offset: Joi.number(),
-            sortType: Joi.string(),
+            sortType: Joi.string()
+        },
+        params: {
+            search: Joi.string().required()
         }
     },
     show: {
         params: {
-            search: Joi.string().alphanum().length(24).required(),
+            id: Joi.string().alphanum().length(24).required()
+        }
+    },
+    showAvaliacoes: {
+        params: {
+            id: Joi.string().alphanum().length(24).required()
+        }
+    },
+    showVariacoes: {
+        params: {
+            id: Joi.string().alphanum().length(24).required()
         }
     }
 };

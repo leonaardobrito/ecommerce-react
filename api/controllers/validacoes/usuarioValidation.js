@@ -8,7 +8,7 @@ const UsuarioValidation = {
             id: Joi.string().alphanum().length(24).required()
         }
     },
-    store: {
+    store:{
         body: {
             nome: Joi.string().required(),
             email: Joi.string().email().required(),
@@ -16,11 +16,11 @@ const UsuarioValidation = {
             loja: Joi.string().alphanum().length(24).required()
         }
     },
-    update: {
+    update:{
         body: {
             nome: Joi.string().optional(),
             email: Joi.string().email().optional(),
-            password: Joi.string().optional(),
+            password: Joi.string().optional()
         }
     },
     login: {
