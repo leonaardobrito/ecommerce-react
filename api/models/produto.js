@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const mongoosePaginate = require("mongoose-paginate"); // traz em formato de página. com pacotes de tamanho definido
+const mongoosePaginate = require("mongoose-paginate");
 const Schema = mongoose.Schema;
 
 const ProdutoSchema = Schema({
@@ -12,10 +12,12 @@ const ProdutoSchema = Schema({
     sku: { type: String, required: true },
     categoria: { type: Schema.Types.ObjectId, ref: "Categoria" },
     loja: { type: Schema.Types.ObjectId, ref: "Loja" },
-    avaliacoes: { type: [{type: Schema.Types.ObjectId, ref: "Avaliacoes"}] },
-    variacoes: { type: [{type: Schema.Types.ObjectId, ref: "Variacoes"}] }
-}, { timestamps: true } );
+    avaliacoes: { type: [{ type: Schema.Types.ObjectId, ref: "Avaliacoes"}] },
+    variacoes: { type: [{ type: Schema.Types.ObjectId, ref: "Variacoes"}] }
+}, { timestamps: true });
 
 ProdutoSchema.plugin(mongoosePaginate);
+
+ProdutoSchema.index({ titulo: "text", descricao: "text", sku: "text" });
 
 module.exports = mongoose.model("Produto", ProdutoSchema);
